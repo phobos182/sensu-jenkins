@@ -16,11 +16,10 @@ do
   # String manipulate the gem file into just the name of the gem
   GEM=${f##*/}
   GEM_NO_VER=`echo $GEM | awk 'BEGIN{FS=OFS="-"}{$NF=""; NF--; print}'`
-  GEM_VER=`echo $GEM | cut -f2 -d'-' | sed 's/.gem//'`
 
   # If gem != list of development gems, then package
   if ! [[ $DEVGEMS =~ .*$GEM_NO_VER.* ]]; then
-    echo "** PACKAGING ** $GEM_VER ..."
+    echo "** PACKAGING ** $GEM ..."
     fpm --iteration $BUILD_NUMBER -a $ARCH -t rpm -s gem $f > /dev/null 2>&1
   fi
 done
