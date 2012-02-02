@@ -5,6 +5,8 @@ if ! [ -d $WORKSPACE/vendor/cache/ ]; then
   exit 1
 fi
 
+echo "*- PACKAGING DEPENDENCIES -*"
+
 FILES="$WORKSPACE/vendor/cache/*"
 
 # Get a list of development gems

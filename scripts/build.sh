@@ -16,12 +16,12 @@ fi
 bundle package --verbose
 
 ## BUILD SENSU ##
+echo "*- BUILDING GEM -* sensu ..."
 gem build sensu.gemspec
 
 ## PACKAGE SENSU ##
 SENSUGEM=`ls sensu*.gem`
-SENSUVER=`echo $SENSUGEM | cut -f2 -d'-' | sed 's/.gem//'`
-echo "** PACKAGING ** rubygem-sensu-$SENSUVER ..."
+echo "** PACKAGING ** $SENSUGEM ..."
 fpm --iteration $BUILD_NUMBER --gem-bin-path=/usr/bin -a x86_64 -t rpm -s gem $SENSUGEM > /dev/null 2>&1
 mv rubygem-sensu*.rpm $WORKSPACE/RPMS/sensu/x86_64/
 
