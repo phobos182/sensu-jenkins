@@ -13,7 +13,7 @@ if ! [ -d $WORKSPACE/RPMS/sensu/ ]; then
 fi
 
 # DOWNLOAD GEM DEPENDENCIES
-bundle package --verbose
+sudo bundle package --verbose
 
 ## BUILD SENSU ##
 echo "*- BUILDING GEM -* sensu ..."
