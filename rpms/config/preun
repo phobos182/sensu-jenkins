@@ -1,0 +1,4 @@
+# Delete package - stop the server
+if [ $1 -eq 0 ]; then
+  /usr/sbin/userdel sensu
+fi
