@@ -29,4 +29,13 @@ mv rubygem-sensu*.rpm $WORKSPACE/RPMS/sensu/x86_64/
 
 ## PACKAGE SENSU DEPENDENCIES ##
 build-deps.sh x86_64
+build-config.sh
+
+## CREATE RPM REPOSITORIES ##
+createrepo -v $WORKSPACE/RPMS/sensu/x86_64
+createrepo -v $WORKSPACE/RPMS/sensu/i386
+createrepo -v $WORKSPACE/RPMS/sensu/noarch
+createrepo -v $WORKSPACE/RPMS/sensu-dependencies/x86_64
+createrepo -v $WORKSPACE/RPMS/sensu-dependencies/i386
+createrepo -v $WORKSPACE/RPMS/sensu-dependencies/noarch
 
