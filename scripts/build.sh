@@ -22,12 +22,11 @@ gem build sensu.gemspec
 ## PACKAGE SENSU ##
 SENSUGEM=`ls sensu*.gem`
 echo "** PACKAGING ** $SENSUGEM ..."
+echo 
 fpm --iteration $BUILD_NUMBER --gem-bin-path=/usr/bin -a x86_64 -t rpm -s gem $SENSUGEM > /dev/null 2>&1
+rm -rf build-rpm*
 mv rubygem-sensu*.rpm $WORKSPACE/RPMS/sensu/x86_64/
 
 ## PACKAGE SENSU DEPENDENCIES ##
 build-deps.sh x86_64
-
-## CLEAN UP BUILD ARTIFACTS ##
-find $WORKSPACE/RPMS/ -type d -name 'build-*' -exec rm -rf {} \;
 

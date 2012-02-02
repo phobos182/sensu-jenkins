@@ -26,6 +26,9 @@ do
   fi
 done
 
+# Clean up build artifacts
+rm -rf build-rpm*
+
 # Move the packaged gems to the RPM Repository
 mv *${ARCH}*.rpm $WORKSPACE/RPMS/sensu-dependencies/$ARCH/
 
