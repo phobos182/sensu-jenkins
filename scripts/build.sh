@@ -14,6 +14,7 @@ fi
 
 # DOWNLOAD GEM DEPENDENCIES
 sudo bundle package --verbose
+sudo chown -R jenkins: *
 
 ## BUILD SENSU ##
 echo "*- BUILDING GEM -* sensu ..."
