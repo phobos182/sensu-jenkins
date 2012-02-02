@@ -1,5 +1,4 @@
 #!/bin/bash
-REPO="$WORKSPACE/RPMS"
 ARCH="$1"
 
 if ! [ -d $WORKSPACE/vendor/cache/ ]; then
@@ -7,11 +6,6 @@ if ! [ -d $WORKSPACE/vendor/cache/ ]; then
 fi
 
 FILES="$WORKSPACE/vendor/cache/*"
-
-# Create directory if it does not exist
-if ! [ -d $REPO ]; then
-  mkdir -p $REPO/$ARCH
-fi
 
 # Get a list of development gems
 DEVGEMS=`cat ./sensu.gemspec | grep -i development | cut -f2 -d'"' | tr '\n' ','`
@@ -31,5 +25,5 @@ do
 done
 
 # Move the packaged gems to the RPM Repository
-mv *${ARCH}*.rpm $REPO/$ARCH/
+mv *${ARCH}*.rpm $WORKSPACE/RPMS/sensu-dependencies/$ARCH/
 
