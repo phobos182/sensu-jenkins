@@ -4,7 +4,7 @@
 FILES=$(find ./rpms/config/ -xtype f|sed -e 's/\.\/rpms\/config//'|xargs -L1 -I{} echo "{}\n"|tr -d '\n'|sed -e 's/\//\\\//g')
 
 ## SET EDITOR TO REPLACE FILE LIST / CHANGE OWNER ##
-export EDITOR="sed -i -e \"s/^\/\./$FILES/g\" | sed -i -e \"s/,root,root,/,sensu,sensu,/g\""
+export EDITOR="sed -i -e \"s/^\/\./$FILES/g\""
 
 echo $FILES
 echo $EDITOR

@@ -4,3 +4,7 @@
 /sbin/chkconfig sensu-api off
 /sbin/chkconfig --add sensu-client
 /sbin/chkconfig sensu-client off
+
+# Change permissions
+chown sensu: /etc/sensu
+chown sensu: /var/log/sensu
