@@ -26,6 +26,9 @@ do
   fi
 done
 
+# BUILD BUNDLER #
+fpm --iteration $BUILD_NUMBER -a $ARCH -t rpm -s gem bundler > /dev/null 2>&1
+
 # Clean up build artifacts
 rm -rf build-rpm*
 
