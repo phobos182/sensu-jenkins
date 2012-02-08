@@ -1,8 +1,14 @@
 #!/bin/bash
 
+## GET FILES TO PACKAGE ##
+FILES=$(find ./rpms/config/ -xtype f|sed -e 's/\.\/rpms\/config//'|xargs -L1 -I{} echo "{}\n"|tr -d '\n'|sed -e 's/\//\\\//g')
+
+## SET EDITOR TO REPLACE FILE LIST / CHANGE OWNER ##
+export EDITOR="sed -i -e \"s/^\/./$FILES/g\"| sed -i -e \"s/,root,root,/,sensu,sensu,/g\""
+
 ## PACKAGE SENSU CONFIG ##
 echo "** PACKAGING ** rubygem-sensu-config ..."
-fpm  -n rubygem-sensu-config --description "Sensu example configurations and directory layouts" --depend "rubygem-sensu" --iteration $BUILD_NUMBER  -a noarch -t rpm -s dir --inputs "$WORKSPACE/rpms/config/etc/sensu $WORKSPACE/rpms/config/etc/init.d/sensu* $WORKSPACE/rpms/config/var/log/sensu" --pre-install $WORKSPACE/rpms/pre --post-install $WORKSPACE/rpms/post --pre-uninstall $WORKSPACE/rpms/preun > /dev/null 2>&1
+fpm  -n rubygem-sensu-config --description "Sensu example configurations and directory layouts" --depend "rubygem-sensu" --iteration $BUILD_NUMBER  -a noarch -t rpm -s dir -e -C $WORKSPACE/rpms/config --pre-install $WORKSPACE/rpms/pre --post-install $WORKSPACE/rpms/post --pre-uninstall $WORKSPACE/rpms/preun --url "https://github.com/sonian/sensu" > /dev/null 2>&1
 
 # Clean up build artifacts
 rm -rf build-rpm*
