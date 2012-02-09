@@ -32,8 +32,6 @@ done
 # BUILD BUNDLER #
 echo "** PACKAGING ** bundler ..."
 fpm --iteration $BUILD_NUMBER -a $ARCH -t rpm -s gem bundler > /dev/null 2>&1
-echo "** PACKAGING ** sinatra ..."
-fpm --iteration $BUILD_NUMBER -a $ARCH -t rpm -s gem sinatra > /dev/null 2>&1
 
 # Clean up build artifacts
 rm -rf build-rpm*
