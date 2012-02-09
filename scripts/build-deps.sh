@@ -25,7 +25,7 @@ do
   # If gem != list of development gems, then package
   if ! [[ $DEVGEMS =~ .*$GEM_NO_VER.* ]]; then
     echo "** PACKAGING ** $GEM ..."
-    fpm --iteration $BUILD_NUMBER -a $ARCH -e -t rpm -s gem $f > /dev/null 2>&1
+    fpm --iteration $BUILD_NUMBER -a $ARCH -e -t rpm -s gem $f 
   fi
 done
 
