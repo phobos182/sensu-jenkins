@@ -13,7 +13,7 @@ FILES="$WORKSPACE/vendor/cache/*"
 DEVGEMS=`cat ./sensu.gemspec | grep -i development | cut -f2 -d'"' | tr '\n' ','`
 
 # SED TO FIX BROKEN GEMSPECS #
-#export EDITOR="sed -i -e \"s/\=\,/0/g\""
+export EDITOR="sed -i -e \"s/\=\,/1/g\""
 
 # For each gem in the bundle
 for f in $FILES
@@ -25,7 +25,7 @@ do
   # If gem != list of development gems, then package
   if ! [[ $DEVGEMS =~ .*$GEM_NO_VER.* ]]; then
     echo "** PACKAGING ** $GEM ..."
-    fpm --iteration $BUILD_NUMBER -a $ARCH -t rpm -s gem $f 
+    fpm --iteration $BUILD_NUMBER -e -a $ARCH -t rpm -s gem $f 
   fi
 done
 

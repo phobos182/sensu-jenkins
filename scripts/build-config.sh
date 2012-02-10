@@ -8,7 +8,7 @@ export EDITOR="sed -i -e \"s/^\/\./$FILES/g\""
 
 ## PACKAGE SENSU CONFIG ##
 echo "** PACKAGING ** rubygem-sensu-config ..."
-fpm  -n rubygem-sensu-config --description "Sensu example configurations and directory layouts" --depend "rubygem-sensu" --iteration $BUILD_NUMBER  -a noarch -t rpm -s dir -e -C $WORKSPACE/rpms/config --pre-install $WORKSPACE/rpms/pre --post-install $WORKSPACE/rpms/post --pre-uninstall $WORKSPACE/rpms/preun --url "https://github.com/sonian/sensu" > /dev/null 2>&1
+fpm  -n rubygem-sensu-config --description "Sensu example configurations and directory layouts" -d "rubygem-sensu" --iteration $BUILD_NUMBER  -a noarch -t rpm -s dir -e -C $WORKSPACE/rpms/config --pre-install $WORKSPACE/rpms/pre --post-install $WORKSPACE/rpms/post --pre-uninstall $WORKSPACE/rpms/preun --url "https://github.com/sonian/sensu" > /dev/null 2>&1
 
 # Clean up build artifacts
 rm -rf build-rpm*
